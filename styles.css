@@ -119,7 +119,28 @@ button {
 }
 
 .name-input {
-  margin-bottom: 30px;
+  position: fixed;
+  top: 50px;
+  right: -300px;
+  transition: right 0.3s ease;
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px 0 0 10px;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 250px;
+  box-sizing: border-box;
+}
+
+.name-input.show {
+  right: 0;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
 }
 
 .name-input input {
@@ -127,18 +148,38 @@ button {
   border: 2px solid #ff4081;
   border-radius: 5px;
   font-size: 16px;
-  width: 200px;
+  width: 100%;
   text-align: center;
   outline: none;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
-.name-input input:focus {
-  border-color: #4caf50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+.toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 0px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff4081;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  z-index: 1001;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
 }
 
-/* 修改移动距离在手机上的表现 */
+.toggle-btn:hover {
+  background-color: #f50057;
+}
+
+/* 修改手机模式下的样式 */
 @media (max-width: 480px) {
   .buttons {
     gap: 20px;
@@ -175,8 +216,19 @@ button {
     transform: translateY(60px) !important;
   }
 
+  .name-input {
+    top: 45px;
+    width: 200px;
+  }
+
   .name-input input {
-    width: 80%;
-    max-width: 250px;
+    width: 100%;
+    max-width: none;
+  }
+
+  .toggle-btn {
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
   }
 }

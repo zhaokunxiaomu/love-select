@@ -3,7 +3,10 @@ const noBtn = document.getElementById('noBtn')
 const title = document.querySelector('h1')
 const buttons = document.querySelector('.buttons')
 const iconElement = document.querySelector('.icon')
+const toggleBtn = document.getElementById('toggleInput')
+const nameInput = document.getElementById('nameInput')
 let clickCount = 0
+let isInputVisible = true
 
 const buttonTexts = [
   {
@@ -80,13 +83,27 @@ noBtn.addEventListener('click', () => {
   iconElement.innerHTML = `<img src="${currentState.icon}" style="width: 150px; height: 150px; object-fit: cover;">`
 })
 
-yesBtn.addEventListener('click', () => {
-  const nameInput = document.getElementById('nameInput')
-  const name = nameInput.value.trim() || 'XXX' // 如果没有输入名字，使用默认值
+toggleBtn.addEventListener('click', () => {
+  const nameInputDiv = document.querySelector('.name-input')
 
+  if (isInputVisible) {
+    nameInputDiv.classList.add('show')
+    toggleBtn.textContent = '👁️'
+  } else {
+    nameInputDiv.classList.remove('show')
+    toggleBtn.textContent = '👀'
+  }
+  isInputVisible = !isInputVisible
+})
+
+yesBtn.addEventListener('click', () => {
+  const name = nameInput.value.trim() || 'XXX'
   title.textContent = `喜欢你 ${name}！❤️`
   buttons.style.display = 'none'
-  nameInput.style.display = 'none' // 隐藏输入框
+
+  // 隐藏输入框和切换按钮
+  document.querySelector('.name-input').style.display = 'none'
+  toggleBtn.style.display = 'none'
 
   // 点击"可以"后显示开心的图片
   iconElement.innerHTML =
